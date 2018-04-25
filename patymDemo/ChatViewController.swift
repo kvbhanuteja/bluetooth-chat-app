@@ -155,7 +155,7 @@ class ChatViewController: UIViewController,UITextFieldDelegate, UITableViewDeleg
         // Check if there's an entry with the "message" key.
         if let message = dataDictionary["message"] {
             // Make sure that the message is other than "_end_chat_".
-            if message != "_end_chat_"{
+            if !message.contains("end chat"){
                 // Create a new dictionary and set the sender and the received message to it.
                 let messageDictionary: [String: String] = ["sender": fromPeer.displayName, "message": message]
                 
