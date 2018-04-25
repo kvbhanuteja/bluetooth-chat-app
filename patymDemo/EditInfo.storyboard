@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Edit Info View Controller-->
+        <scene sceneID="Hpo-sQ-8cA">
+            <objects>
+                <viewController storyboardIdentifier="editinfo" id="kes-uj-cli" customClass="EditInfoViewController" customModule="patymDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wiX-GK-rTU"/>
+                        <viewControllerLayoutGuide type="bottom" id="dsb-B0-tnV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="drY-h7-gQ3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.40784313729999999" green="0.40784313729999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="H7M-eN-CF5"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EbP-Or-fLZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2447.1999999999998" y="-34.632683658170919"/>
+        </scene>
+        <!--Navigation View Controller-->
+        <scene sceneID="2e2-Kk-TI7">
+            <objects>
+                <navigationController storyboardIdentifier="editbar" automaticallyAdjustsScrollViewInsets="NO" id="mQv-cR-iBT" customClass="NavigationViewController" customModule="patymDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2ij-pr-Gq0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="kes-uj-cli" kind="relationship" relationship="rootViewController" id="C1e-hy-eTk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pse-mS-CKD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1508" y="-34.632683658170919"/>
+        </scene>
+    </scenes>
+</document>

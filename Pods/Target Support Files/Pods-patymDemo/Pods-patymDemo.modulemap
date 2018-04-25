@@ -1,0 +1,6 @@
+framework module Pods_patymDemo {
+  umbrella header "Pods-patymDemo-umbrella.h"
+
+  export *
+  module * { export * }
+}
