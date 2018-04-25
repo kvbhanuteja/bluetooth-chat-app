@@ -63,7 +63,7 @@ class HomeViewController: UIViewController,iCarouselDelegate,iCarouselDataSource
             buttons.tag = index
             buttons.addTarget(self, action: #selector(HomeViewController.buttonsAction(_:)), for: .touchUpInside)
         }
-        buttons.backgroundColor = UIColor.green
+        buttons.backgroundColor = UIColor.black
         tempView.addSubview(buttons)
         return tempView
         

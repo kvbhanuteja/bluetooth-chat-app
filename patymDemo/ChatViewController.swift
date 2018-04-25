@@ -11,6 +11,8 @@ import MultipeerConnectivity
 
 class ChatViewController: UIViewController,UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var sendbuttonBackView: UIView!
+    @IBOutlet weak var send: UIButton!
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var messagetextfield: UITextField!
     var messagesArray: [Dictionary<String, String>] = []
@@ -23,14 +25,24 @@ class ChatViewController: UIViewController,UITextFieldDelegate, UITableViewDeleg
             tableview.dataSource = self
             tableview.tableFooterView = UIView()
             appDelegate.mpcManager.browser.stopBrowsingForPeers()
-            
-            //appDelegate.mpcManager.advertiser.startAdvertisingPeer()
-//            NotificationCenter.default.addObserver(self, selector: #Selector("handleMPCReceivedDataWithNotification:"), name: NSNotification.Name(rawValue: "receivedMPCDataNotification"), object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(self.handleMPCReceivedDataWithNotification(notification:)), name: NSNotification.Name(rawValue: "receivedMPCDataNotification"), object: nil)
-
-              // Do any additional setup after loading the view.
+            NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardShow(notification:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
     }
 
+    func keyboardHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey]) as? CGRect{
+            self.view.frame.origin.y += keyboardSize.height
+        }
+    }
+    
+    func keyboardShow(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey]) as? CGRect{
+            self.view.frame.origin.y -= keyboardSize.height
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -38,9 +50,12 @@ class ChatViewController: UIViewController,UITextFieldDelegate, UITableViewDeleg
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+       appDelegate.mpcManager.browser.startBrowsingForPeers()
     }
-   
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        appDelegate.mpcManager.browser.startBrowsingForPeers()
+    }
     @IBAction func endChat(_ sender: Any) {
         let messageDictionary: [String: String] = ["message": "_end_chat_"]
         if appDelegate.mpcManager.sendData(dictionaryWithData: messageDictionary, toPeer: appDelegate.mpcManager.session.connectedPeers[0] as MCPeerID){
@@ -60,26 +75,33 @@ class ChatViewController: UIViewController,UITextFieldDelegate, UITableViewDeleg
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        
-        let messageDictionary: [String: String] = ["message": textField.text!]
-        
-        if appDelegate.mpcManager.sendData(dictionaryWithData: messageDictionary, toPeer: appDelegate.mpcManager.session.connectedPeers[0] as MCPeerID){
-            
-            let dictionary: [String: String] = ["sender": "self", "message": textField.text!]
-            messagesArray.append(dictionary)
-            
-            self.updateTableview()
-        }
-        else{
-            print("Could not send data")
-        }
-        
-        textField.text = ""
-        
+       sendMessageMethod(textField: textField)
         return true
     }
-
+    
+    func sendMessageMethod(textField:UITextField){
+        textField.resignFirstResponder()
+        if(!textField.text!.isEmpty){
+            let messageDictionary: [String: String] = ["message": textField.text!]
+            
+            if appDelegate.mpcManager.sendData(dictionaryWithData: messageDictionary, toPeer: appDelegate.mpcManager.session.connectedPeers[0] as MCPeerID){
+                
+                let dictionary: [String: String] = ["sender": "self", "message": textField.text!]
+                messagesArray.append(dictionary)
+                
+                self.updateTableview()
+            }
+            else{
+                print("Could not send data")
+            }
+            
+            textField.text = ""
+        }
+    }
+   
+    @IBAction func sendMessage(_ sender: Any) {
+        sendMessageMethod(textField: messagetextfield)
+    }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -88,33 +110,27 @@ class ChatViewController: UIViewController,UITextFieldDelegate, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatCell")!
-        
+        let cell = UITableViewCell()
+        let selfCell = tableView.dequeueReusableCell(withIdentifier: "SelfChatCell") as? SelfTableViewCell
+        let receiverCell = tableView.dequeueReusableCell(withIdentifier: "RecivedChatCell") as? ReceiverTableViewCell
         let currentMessage = messagesArray[indexPath.row] as Dictionary<String, String>
         
         if let sender = currentMessage["sender"] {
-            var senderLabelText: String
-            var senderColor: UIColor
-            
-            if sender == "self"{
-                senderLabelText = "I said:"
-                senderColor = UIColor.purple
+                if sender == "self"{
+                if let message = currentMessage["message"] {
+                    selfCell?.messageLabel?.text = message
+                }
+                return  selfCell!
             }
             else{
-                senderLabelText = sender + " said:"
-                senderColor = UIColor.orange
+                if let message = currentMessage["message"] {
+                    receiverCell?.messageLabel?.text = message
+                }
+                return receiverCell!
             }
-            
-            cell.textLabel?.text = senderLabelText
-            cell.textLabel?.textColor = senderColor
         }
-        
-        if let message = currentMessage["message"] {
-            cell.detailTextLabel?.text = message
-        }
-        
         return cell
-    }
+        }
     
     func updateTableview(){
         tableview.reloadData()

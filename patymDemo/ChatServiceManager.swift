@@ -116,18 +116,14 @@ class ChatServiceManager: NSObject,MCSessionDelegate, MCNearbyServiceBrowserDele
     
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        print(data)
         let dictionary: [String: AnyObject] = ["data": data as AnyObject, "fromPeer": peerID]
-        print(dictionary)
         NotificationCenter.default.post(name: Notification.Name("receivedMPCDataNotification"), object: dictionary)
-        
-        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "receivedMPCDataNotification"), object: nil)
     }
     
     
     func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) { }
     
-    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL, withError error: Error?) { }
+    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) { }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) { }
     

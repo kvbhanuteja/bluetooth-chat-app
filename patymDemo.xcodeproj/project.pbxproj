@@ -20,6 +20,8 @@
 		495FBCF11EB60E6400E1FDA9 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495FBCF01EB60E6400E1FDA9 /* Chat.storyboard */; };
 		495FBCF31EB60E7C00E1FDA9 /* pay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495FBCF21EB60E7C00E1FDA9 /* pay.storyboard */; };
 		495FBCF51EB60E9200E1FDA9 /* EditInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495FBCF41EB60E9200E1FDA9 /* EditInfo.storyboard */; };
+		4962701A2090A6B8009B86DD /* SelfTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496270192090A6B8009B86DD /* SelfTableViewCell.swift */; };
+		4962701C2090A6CB009B86DD /* ReceiverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4962701B2090A6CB009B86DD /* ReceiverTableViewCell.swift */; };
 		496C26E81EAF55AB00D78996 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C26E71EAF55AB00D78996 /* AppDelegate.swift */; };
 		496C26ED1EAF55AB00D78996 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496C26EB1EAF55AB00D78996 /* Main.storyboard */; };
 		496C26F01EAF55AB00D78996 /* patymDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 496C26EE1EAF55AB00D78996 /* patymDemo.xcdatamodeld */; };
@@ -97,6 +99,8 @@
 		495FBCF01EB60E6400E1FDA9 /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		495FBCF21EB60E7C00E1FDA9 /* pay.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = pay.storyboard; sourceTree = "<group>"; };
 		495FBCF41EB60E9200E1FDA9 /* EditInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EditInfo.storyboard; sourceTree = "<group>"; };
+		496270192090A6B8009B86DD /* SelfTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfTableViewCell.swift; sourceTree = "<group>"; };
+		4962701B2090A6CB009B86DD /* ReceiverTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverTableViewCell.swift; sourceTree = "<group>"; };
 		496C26E41EAF55AB00D78996 /* patymDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = patymDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		496C26E71EAF55AB00D78996 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		496C26EC1EAF55AB00D78996 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -271,6 +275,8 @@
 				49C7F7151EB76D6400091996 /* NavigationViewController.swift */,
 				49100B681EB89E330081516D /* ChatFirstViewController.swift */,
 				499352DE1EB9BDFD00CB5ACD /* GeoLocationViewController.swift */,
+				496270192090A6B8009B86DD /* SelfTableViewCell.swift */,
+				4962701B2090A6CB009B86DD /* ReceiverTableViewCell.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -602,6 +608,8 @@
 				492D3DF31EAF5C2B0086BDE7 /* LoginViewController.swift in Sources */,
 				496C26F01EAF55AB00D78996 /* patymDemo.xcdatamodeld in Sources */,
 				499352EB1EBA127800CB5ACD /* Utilities.swift in Sources */,
+				4962701C2090A6CB009B86DD /* ReceiverTableViewCell.swift in Sources */,
+				4962701A2090A6B8009B86DD /* SelfTableViewCell.swift in Sources */,
 				49100B691EB89E330081516D /* ChatFirstViewController.swift in Sources */,
 				499352ED1EBA12CE00CB5ACD /* AddGeotificationViewController.swift in Sources */,
 				495FBCE71EB6023A00E1FDA9 /* iCarousel.m in Sources */,
@@ -769,6 +777,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D6J37G2ND8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -780,6 +790,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Bhanu.patymDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "patymDemo/patymDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -792,6 +803,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D6J37G2ND8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -803,6 +816,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Bhanu.patymDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "patymDemo/patymDemo-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
@@ -923,6 +937,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D6J37G2ND8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -934,6 +950,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Bhanu.patymDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "patymDemo/patymDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1026,6 +1043,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D6J37G2ND8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1037,6 +1056,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Bhanu.patymDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "patymDemo/patymDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;

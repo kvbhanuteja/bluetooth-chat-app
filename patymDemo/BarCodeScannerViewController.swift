@@ -118,8 +118,10 @@ class BarCodeScannerViewController: UIViewController,AVCaptureMetadataOutputObje
     func alert(Code: String){
         let url = URL(string: Code)!
         if UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.openURL(url)
+            DispatchQueue.main.async {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
             self.navigationController?.popViewController(animated: true);
+            }
         }else{
                 let actionSheet:UIAlertController = UIAlertController(title: "Barcode", message: "\(Code)", preferredStyle: UIAlertControllerStyle.alert)
         

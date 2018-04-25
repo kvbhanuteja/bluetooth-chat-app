@@ -23,11 +23,8 @@ class GeoLocationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // 1
         locationManager.delegate = self as CLLocationManagerDelegate
-        // 2
         locationManager.requestAlwaysAuthorization()
-        // 3
         loadAllGeotifications()
         // Do any additional setup after loading the view.
     }
@@ -125,18 +122,14 @@ class GeoLocationViewController: UIViewController {
     }
     
     func startMonitoring(geotification: Geotification) {
-        // 1
         if !CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
             showAlert(withTitle:"Error", message: "Geofencing is not supported on this device!")
             return
         }
-        // 2
         if CLLocationManager.authorizationStatus() != .authorizedAlways {
             showAlert(withTitle:"Warning", message: "Your geotification is saved but will only be activated once you grant Geotify permission to access the device location.")
         }
-        // 3
         let region = self.region(withGeotification: geotification)
-        // 4
         locationManager.startMonitoring(for: region)
     }
     
@@ -153,11 +146,9 @@ extension GeoLocationViewController: AddGeotificationsViewControllerDelegate {
     
     func addGeotificationViewController(controller: AddGeotificationViewController, didAddCoordinate coordinate: CLLocationCoordinate2D, radius: Double, identifier: String, note: String, eventType: EventType) {
         controller.dismiss(animated: true, completion: nil)
-        // 1
         let clampedRadius = min(radius, locationManager.maximumRegionMonitoringDistance)
         let geotification = Geotification(coordinate: coordinate, radius: clampedRadius, identifier: identifier, note: note, eventType: eventType)
         add(geotification: geotification)
-        // 2
         startMonitoring(geotification: geotification)
         saveAllGeotifications()
     }
